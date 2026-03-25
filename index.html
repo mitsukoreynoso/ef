@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Valeria Ríos | Estratega de Comunicación y Publicidad</title>
+    <meta name="description" content="Landing page de Valeria Ríos, publicista experta en relaciones públicas, gestión de crisis y campañas de marketing digital. Conecta tu marca con el mundo.">
+    <meta name="keywords" content="publicista, relaciones públicas, marketing digital, branding, campañas publicitarias, gestión de crisis">
+    <meta name="author" content="Valeria Ríos">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Valeria Ríos | Estratega de Comunicación">
+    <meta property="og:description" content="Potencia la voz de tu marca. Estrategias de comunicación efectivas e innovadoras.">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS (Framework de diseño responsivo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome (Iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Configuración personalizada de Tailwind y CSS Vanilla para animaciones -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            500: '#e05d3a', // Color principal de acento (naranja/terracota)
+                            900: '#2d1b16', // Texto oscuro
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Clases base personalizadas */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Utilidad para ocultar la barra de scroll pero permitir el scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Animaciones para JS Intersection Observer */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        /* Efecto de overlay en el video hero */
+        .video-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-brand-50 relative">
+
+    <!-- CABECERA Y NAVEGACIÓN -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-serif font-bold text-white tracking-wider transition-colors duration-300" id="logo-text">
+                VR<span class="text-brand-500">.</span>
+            </a>
+
+            <!-- Navegación de Escritorio -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#inicio" class="text-white hover:text-brand-500 transition-colors font-medium text-sm uppercase tracking-wide nav-link">Inicio</a>
+                <a href="#sobre-mi" class="text-white hover:text-brand-500 transition-colors font-medium text-sm uppercase tracking-wide nav-link">Sobre Mí</a>
+                <a href="#servicios" class="text-white hover:text-brand-500 transition-colors font-medium text-sm uppercase tracking-wide nav-link">Servicios</a>
+                <a href="#portafolio" class="text-white hover:text-brand-500 transition-colors font-medium text-sm uppercase tracking-wide nav-link">Portafolio</a>
+                <a href="#contacto" class="px-5 py-2 bg-brand-500 text-white rounded-full font-medium hover:bg-orange-700 transition-all transform hover:scale-105 shadow-lg">Hablemos</a>
+            </nav>
+
+            <!-- Botón Menú Móvil -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Abrir menú">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Menú Móvil (Oculto por defecto) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-brand-900/95 backdrop-blur-md z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-white text-3xl focus:outline-none" aria-label="Cerrar menú">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#inicio" class="text-white text-2xl font-serif hover:text-brand-500 transition-colors mobile-link">Inicio</a>
+            <a href="#sobre-mi" class="text-white text-2xl font-serif hover:text-brand-500 transition-colors mobile-link">Sobre Mí</a>
+            <a href="#servicios" class="text-white text-2xl font-serif hover:text-brand-500 transition-colors mobile-link">Servicios</a>
+            <a href="#portafolio" class="text-white text-2xl font-serif hover:text-brand-500 transition-colors mobile-link">Portafolio</a>
+            <a href="#contacto" class="px-8 py-3 bg-brand-500 text-white rounded-full text-xl mt-4">Hablemos</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECCIÓN HERO (Con vídeo de fondo) -->
+        <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+            <!-- Vídeo de fondo de repositorio (W3C Sample) -->
+            <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover">
+                <!-- Usamos un video genérico abierto de prueba. En producción iría un reel de la publicista -->
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+            
+            <!-- Capa superpuesta para oscurecer el video y permitir lectura del texto -->
+            <div class="absolute z-10 inset-0 video-overlay"></div>
+
+            <div class="relative z-20 text-center px-4 max-w-4xl mx-auto fade-in-section">
+                <span class="block text-brand-500 font-semibold tracking-widest uppercase mb-4 text-sm md:text-base">Valeria Ríos | Publicista Senior</span>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold text-white leading-tight mb-6">
+                    Hacemos que tu marca <br><span class="italic font-light">sea inolvidable</span>.
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+                    Estrategias de comunicación, relaciones públicas y campañas digitales que conectan audiencias y generan resultados reales.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#portafolio" class="px-8 py-4 bg-brand-500 text-white rounded-full font-semibold hover:bg-orange-700 transition-colors shadow-lg shadow-brand-500/30">
+                        Ver Casos de Éxito
+                    </a>
+                    <a href="#contacto" class="px-8 py-4 bg-transparent border border-white text-white rounded-full font-semibold hover:bg-white hover:text-brand-900 transition-colors">
+                        Agendar Consultoría
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Indicador de scroll -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+                <a href="#sobre-mi" class="text-white opacity-70 hover:opacity-100 transition-opacity" aria-label="Bajar a la siguiente sección">
+                    <i class="fas fa-chevron-down text-2xl"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SOBRE MÍ -->
+        <section id="sobre-mi" class="py-24 bg-white">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <!-- Imagen de perfil -->
+                    <div class="w-full lg:w-1/2 relative fade-in-section">
+                        <!-- Cuadro decorativo detrás de la imagen -->
+                        <div class="absolute inset-0 bg-brand-100 transform translate-x-4 translate-y-4 rounded-2xl z-0"></div>
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Valeria Ríos, Publicista en su oficina" class="relative z-10 w-full h-auto rounded-2xl shadow-xl object-cover aspect-[4/5]">
+                        
+                        <!-- Tarjeta flotante de experiencia -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl z-20 flex items-center gap-4 border border-gray-100">
+                            <div class="bg-brand-500 p-3 rounded-full text-white">
+                                <i class="fas fa-award text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-bold text-brand-900">10+</p>
+                                <p class="text-sm text-gray-500 font-medium">Años de Experiencia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Texto descriptivo -->
+                    <div class="w-full lg:w-1/2 fade-in-section" style="transition-delay: 0.2s;">
+                        <h2 class="text-brand-500 font-semibold tracking-widest uppercase mb-2">Sobre Mí</h2>
+                        <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-900 mb-6 leading-tight">
+                            No solo comunico, <br>construyo reputación.
+                        </h3>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Soy una estratega de comunicación apasionada por las historias bien contadas. Ayudo a marcas, figuras públicas y empresas a encontrar su voz, conectar con su audiencia ideal y blindar su imagen ante cualquier crisis.
+                        </p>
+                        <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                            A lo largo de mi carrera, he gestionado campañas millonarias, posicionado startups en medios Tier 1 y revertido situaciones de crisis mediática. Mi enfoque combina creatividad pura con análisis de datos implacable.
+                        </p>
+                        
+                        <!-- Lista de aptitudes -->
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check-circle text-brand-500 mr-3"></i> Estrategia de Marca (Branding)
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check-circle text-brand-500 mr-3"></i> Relaciones con los Medios (PR)
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check-circle text-brand-500 mr-3"></i> Prevención y Gestión de Crisis
+                            </li>
+                        </ul>
+
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Signature_of_John_Hancock.svg" alt="Firma de Valeria" class="h-12 opacity-40">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SERVICIOS -->
+        <section id="servicios" class="py-24 bg-brand-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-brand-500 font-semibold tracking-widest uppercase mb-2">Mis Servicios</h2>
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-900 mb-4">¿Cómo puedo ayudarte?</h3>
+                    <p class="text-gray-600 text-lg">Soluciones integrales diseñadas a medida para amplificar tu mensaje y proteger tu legado empresarial.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Servicio 1 -->
+                    <article class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 group fade-in-section border border-gray-100">
+                        <div class="w-16 h-16 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-500 transition-colors duration-300">
+                            <i class="fas fa-bullhorn text-2xl text-brand-500 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-brand-900 mb-3">Relaciones Públicas</h4>
+                        <p class="text-gray-600 mb-4">Posicionamiento en medios de comunicación tradicionales y digitales. Redacción de notas de prensa, media training y relacionamiento con periodistas clave.</p>
+                    </article>
+
+                    <!-- Servicio 2 -->
+                    <article class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 group fade-in-section border border-gray-100" style="transition-delay: 0.1s;">
+                        <div class="w-16 h-16 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-500 transition-colors duration-300">
+                            <i class="fas fa-shield-alt text-2xl text-brand-500 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-brand-900 mb-3">Gestión de Crisis</h4>
+                        <p class="text-gray-600 mb-4">Protocolos de prevención, comités de crisis y respuesta inmediata ante contingencias que amenacen la reputación de la marca.</p>
+                    </article>
+
+                    <!-- Servicio 3 -->
+                    <article class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 group fade-in-section border border-gray-100" style="transition-delay: 0.2s;">
+                        <div class="w-16 h-16 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-500 transition-colors duration-300">
+                            <i class="fas fa-lightbulb text-2xl text-brand-500 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-brand-900 mb-3">Estrategia Creativa</h4>
+                        <p class="text-gray-600 mb-4">Conceptualización de campañas publicitarias 360º. Desde la idea matriz hasta la ejecución visual y copy estratégico para todos los canales.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PORTAFOLIO / CASOS DE ÉXITO -->
+        <section id="portafolio" class="py-24 bg-brand-900 text-white">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 fade-in-section">
+                    <div class="max-w-2xl">
+                        <h2 class="text-brand-500 font-semibold tracking-widest uppercase mb-2">Portafolio</h2>
+                        <h3 class="text-4xl md:text-5xl font-serif font-bold mb-4">Historias que marcan la diferencia.</h3>
+                    </div>
+                    <a href="#contacto" class="hidden md:inline-flex items-center gap-2 text-white hover:text-brand-500 transition-colors font-medium pb-1 border-b border-transparent hover:border-brand-500">
+                        Iniciar un proyecto similar <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Grid de Proyectos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Proyecto 1 -->
+                    <article class="group relative overflow-hidden rounded-2xl fade-in-section cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Rebranding Tech Startup" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="text-brand-500 font-bold text-sm tracking-wider uppercase">Startup FinTech</span>
+                            <h4 class="text-2xl font-serif font-bold mt-2 mb-2">Lanzamiento Nacional</h4>
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Campaña PR que resultó en 50+ apariciones en prensa orgánica.</p>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 2 -->
+                    <article class="group relative overflow-hidden rounded-2xl fade-in-section cursor-pointer" style="transition-delay: 0.1s;">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Campaña Corporativa" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="text-brand-500 font-bold text-sm tracking-wider uppercase">Marca Retail</span>
+                            <h4 class="text-2xl font-serif font-bold mt-2 mb-2">Manejo de Crisis Reputacional</h4>
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Contención mediática y recuperación de sentimiento positivo al 85%.</p>
+                        </div>
+                    </article>
+                    
+                    <!-- Proyecto 3 (Ancho completo) -->
+                    <article class="group relative overflow-hidden rounded-2xl md:col-span-2 fade-in-section cursor-pointer" style="transition-delay: 0.2s;">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Evento RRPP" class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="text-brand-500 font-bold text-sm tracking-wider uppercase">Moda Sostenible</span>
+                            <h4 class="text-3xl md:text-4xl font-serif font-bold mt-2 mb-3">Evento de Experiencia "Eco-Runway"</h4>
+                            <p class="text-gray-300 text-base md:text-lg max-w-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Dirección creativa y convocatoria de influencers para la semana de la moda, alcanzando 2M de impresiones sociales.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE TESTIMONIOS (Social Proof) -->
+        <section class="py-20 bg-brand-100">
+            <div class="container mx-auto px-6 lg:px-12 text-center fade-in-section">
+                <i class="fas fa-quote-left text-4xl text-brand-500/30 mb-6"></i>
+                <h3 class="text-2xl md:text-4xl font-serif text-brand-900 leading-relaxed max-w-4xl mx-auto italic mb-8">
+                    "Valeria no solo entendió nuestra visión, sino que la tradujo en un lenguaje que conectó inmediatamente con los medios. Es la mejor aliada estratégica que pudimos contratar."
+                </h3>
+                <div class="flex items-center justify-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                    <div class="text-left">
+                        <p class="font-bold text-brand-900">Roberto Sánchez</p>
+                        <p class="text-sm text-gray-600">CEO, InnovaTech Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO -->
+        <section id="contacto" class="py-24 bg-white relative">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex flex-col lg:flex-row gap-16 bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 fade-in-section">
+                    
+                    <!-- Información de contacto -->
+                    <div class="w-full lg:w-2/5 bg-brand-900 text-white p-10 md:p-16 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-4xl font-serif font-bold mb-4">¿Lista para hacer ruido?</h3>
+                            <p class="text-gray-300 mb-10">Cuéntame sobre tu marca, tus metas o ese fuego que necesitas apagar. Estoy aquí para escucharte.</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <i class="fas fa-envelope text-brand-500 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-bold text-white mb-1">Email</h5>
+                                        <a href="mailto:hola@valeriarios.com" class="text-gray-400 hover:text-brand-500 transition">hola@valeriarios.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <i class="fas fa-phone-alt text-brand-500 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-bold text-white mb-1">Teléfono</h5>
+                                        <a href="tel:+34600000000" class="text-gray-400 hover:text-brand-500 transition">+34 600 000 000</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <i class="fas fa-map-marker-alt text-brand-500 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-bold text-white mb-1">Estudio</h5>
+                                        <p class="text-gray-400">Paseo de la Reforma 222, CDMX</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Redes Sociales -->
+                        <div class="mt-12">
+                            <h5 class="font-bold text-white mb-4 uppercase tracking-widest text-sm">Sígueme</h5>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-500 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-500 transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-500 transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario -->
+                    <div class="w-full lg:w-3/5 p-10 md:p-16">
+                        <h4 class="text-2xl font-bold text-brand-900 mb-8">Envíame un mensaje</h4>
+                        <form id="contact-form" class="space-y-6" onsubmit="event.preventDefault(); submitForm();">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
+                                    <input type="text" id="nombre" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all" placeholder="Ej. Juan Pérez">
+                                </div>
+                                <div>
+                                    <label for="empresa" class="block text-sm font-medium text-gray-700 mb-2">Empresa / Marca</label>
+                                    <input type="text" id="empresa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all" placeholder="Tu marca">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all" placeholder="tu@correo.com">
+                            </div>
+
+                            <div>
+                                <label for="servicio" class="block text-sm font-medium text-gray-700 mb-2">¿Qué servicio buscas?</label>
+                                <select id="servicio" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-white">
+                                    <option>Relaciones Públicas</option>
+                                    <option>Manejo de Crisis</option>
+                                    <option>Estrategia y Branding</option>
+                                    <option>Asesoría General</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                                <textarea id="mensaje" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all resize-none" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-900 text-white font-bold py-4 rounded-lg hover:bg-brand-500 transition-colors shadow-lg flex justify-center items-center gap-2">
+                                Enviar Mensaje <i class="fas fa-paper-plane"></i>
+                            </button>
+                            
+                            <!-- Mensaje de éxito (Oculto) -->
+                            <div id="success-msg" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-lg border border-green-200 text-center">
+                                ¡Gracias! Tu mensaje ha sido enviado. Me pondré en contacto contigo pronto.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 py-8 border-t border-gray-200">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#" class="text-2xl font-serif font-bold text-brand-900 mb-4 inline-block">
+                VR<span class="text-brand-500">.</span>
+            </a>
+            <p class="text-gray-500 text-sm mb-4">
+                © <span id="year"></span> Valeria Ríos. Todos los derechos reservados.
+            </p>
+            <div class="flex justify-center gap-6 text-sm">
+                <a href="#" class="text-gray-500 hover:text-brand-500 transition">Política de Privacidad</a>
+                <a href="#" class="text-gray-500 hover:text-brand-500 transition">Términos de Servicio</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Actualizar año en el footer
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            // 2. Comportamiento del Navbar al hacer scroll
+            const navbar = document.getElementById('navbar');
+            const logoText = document.getElementById('logo-text');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const menuBtnIcon = document.querySelector('#mobile-menu-btn i');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white', 'shadow-md');
+                    navbar.classList.remove('bg-transparent', 'py-4');
+                    navbar.classList.add('py-2');
+                    
+                    logoText.classList.remove('text-white');
+                    logoText.classList.add('text-brand-900');
+                    
+                    menuBtnIcon.classList.remove('text-white');
+                    menuBtnIcon.classList.add('text-brand-900');
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-white');
+                        link.classList.add('text-gray-600');
+                    });
+                } else {
+                    navbar.classList.remove('bg-white', 'shadow-md');
+                    navbar.classList.add('bg-transparent', 'py-4');
+                    navbar.classList.remove('py-2');
+                    
+                    logoText.classList.add('text-white');
+                    logoText.classList.remove('text-brand-900');
+                    
+                    menuBtnIcon.classList.add('text-white');
+                    menuBtnIcon.classList.remove('text-brand-900');
+
+                    navLinks.forEach(link => {
+                        link.classList.add('text-white');
+                        link.classList.remove('text-gray-600');
+                    });
+                }
+            });
+
+            // 3. Animaciones al hacer scroll (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Dejar de observar una vez animado
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // 4. Menú Móvil
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.remove('hidden');
+                    // Pequeño timeout para que la transición de opacidad funcione
+                    setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+                    document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+                } else {
+                    mobileMenu.classList.add('opacity-0');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }, 300); // Tiempo que coincida con la duración de la transición
+                }
+            }
+
+            mobileBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        });
+
+        // 5. Simulación de Envío de Formulario
+        function submitForm() {
+            const btn = document.querySelector('#contact-form button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            // Estado de carga
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            // Simular petición asíncrona (ej. AJAX/Fetch)
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                
+                document.getElementById('contact-form').reset();
+                
+                const successMsg = document.getElementById('success-msg');
+                successMsg.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
